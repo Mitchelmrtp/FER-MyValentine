@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Carta con Flores - San Valentín</title>
   <!-- Carta styles -->
-  <link rel="stylesheet" href="carta.san.valentin/style.css">
+  <link rel="stylesheet" href="css/carta-style.css">
   <style>
     /* Layout for combined view */
     body { background: #fffaf6; display:flex; align-items:center; justify-content:center; min-height:100vh; }
@@ -200,7 +200,7 @@
   </div>
 
   <!-- Carta script (keeps behavior) -->
-  <script src="carta.san.valentin/script_v2.js"></script>
+  <script src="javascript/carta-script.js"></script>
   <script>
     // Observe .carta for 'abierta' class and toggle flower iframe
     const cartaEl = document.querySelector('.carta');
@@ -211,7 +211,7 @@
     const btnCloseEnlarged = document.getElementById('btnCloseEnlarged');
 
     function showFlowers() {
-      if (!flowerFrame.src) flowerFrame.src = 'flores-amarillas-tres/flower.html';
+      if (!flowerFrame.src) flowerFrame.src = 'flower.html';
       flowerFrame.style.display = 'block';
       // Show message overlay after a brief delay
       setTimeout(() => {
