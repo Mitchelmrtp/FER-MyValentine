@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flores Para Ti 🌼</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      overflow: hidden;
+      height: 100vh;
+      background: #000;
+    }
+
+    /* Flores iframe (fullscreen) */
+    #flowerFrame {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      z-index: 1;
+    }
+
+    /* Message overlay */
+    #messageOverlay {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding-bottom: 8vh;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(1px);
+      opacity: 0;
+      transition: opacity 1.5s ease;
+      pointer-events: none;
+    }
+    
+    #messageOverlay.visible {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    #messageBox {
+      background: linear-gradient(135deg, rgba(255, 248, 225, 0.95) 0%, rgba(255, 236, 179, 0.95) 100%);
+      padding: 35px 30px;
+      border-radius: 25px;
+      box-shadow: 0 20px 60px rgba(255, 193, 7, 0.6);
+      text-align: center;
+      max-width: 500px;
+      width: 85%;
+      transform: scale(0.8) translateY(50px);
+      transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    }
+    
+    #messageOverlay.visible #messageBox {
+      transform: scale(1) translateY(0);
+    }
+
+    #messageBox h2 {
+      font-family: 'Marck Script', cursive;
+      color: #f57f17;
+      font-size: 30px;
+      margin-bottom: 18px;
+      text-shadow: 2px 2px 4px rgba(245, 127, 23, 0.2);
+      line-height: 1.2;
+    }
+    
+    #messageBox p {
+      font-family: 'Poppins', sans-serif;
+      color: #5d4037;
+      font-size: 17px;
+      line-height: 1.5;
+      margin-bottom: 25px;
+    }
+
+    #btnGalaxy {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 16px 35px;
+      font-size: 17px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      min-height: 54px;
+    }
+    
+    #btnGalaxy::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    
+    #btnGalaxy:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    
+    #btnGalaxy:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+    }
+    
+    #btnGalaxy span {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      #messageBox {
+        padding: 30px 25px;
+        width: 95%;
+      }
+      #messageBox h2 {
+        font-size: 26px;
+        margin-bottom: 18px;
+      }
+      #messageBox p {
+        font-size: 16px;
+        line-height: 1.5;
+        margin-bottom: 25px;
+      }
+      #btnGalaxy {
+        padding: 14px 28px;
+        font-size: 15px;
+        width: 100%;
+        max-width: 320px;
+      }
+    }
+    
+    @media (max-width: 400px) {
+      #messageBox {
+        padding: 25px 20px;
+      }
+      #messageBox h2 {
+        font-size: 24px;
+      }
+      #messageBox p {
+        font-size: 15px;
+      }
+      #btnGalaxy {
+        font-size: 14px;
+        padding: 12px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Flores animadas en iframe -->
+  <iframe id="flowerFrame" src="flores-amarillas-tres/flower.html" allow="autoplay"></iframe>
+
+  <!-- Message overlay -->
+  <div id="messageOverlay">
+    <div id="messageBox">
+      <h2>🌼 Flores Virtuales 🌼</h2>
+      <p>
+        Sé que no puedo darte las flores en persona,<br>
+        pero te dedico unas virtuales hechas con amor
+      </p>
+      <button id="btnGalaxy">
+        <span>¿Deseas escuchar los latidos de mi corazón? 💓</span>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Show message overlay after flowers animation starts (10 seconds delay)
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('messageOverlay').classList.add('visible');
+      }, 10000); // Wait 10 seconds for flowers to animate fully
+    });
+
+    // Navigate to galaxy on button click
+    document.getElementById('btnGalaxy').addEventListener('click', () => {
+      window.location.href = 'galaxy.html';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fce4ec;
+}
+.screen {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+.active {
+  display: flex;
+}
+.password-screen {
+  flex-direction: column;
+}
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 60px);
+  gap: 10px;
+  margin-top: 20px;
+  justify-content: center;
+}
+.key {
+  background-color: #f8bbd0;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  padding: 15px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.key:hover {
+  background-color: #f48fb1;
+}
+.input-display {
+  font-size: 24px;
+  margin-top: 20px;
+  letter-spacing: 8px;
+}
+.notepad {
+  background-color: #fff0f6;
+  border: 3px solid #f8bbd0;
+  padding: 20px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 500px;
+  text-align: left;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  line-height: 1.6;
+}
+.notepad h3 {
+  margin-top: 0;
+}
+
+/* Particles (hearts) */
+.particles {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+.particles .heart {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  transform: rotate(45deg);
+  background: #ff6f98;
+  left: 50%;
+  bottom: 20%;
+  z-index: 2;
+  animation-name: floatUp;
+  animation-timing-function: linear;
+  will-change: transform, opacity;
+}
+.particles .heart::before,
+.particles .heart::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: #ff6f98;
+  border-radius: 50%;
+}
+.particles .heart::before {
+  top: -9px;
+  left: 0;
+}
+.particles .heart::after {
+  left: 9px;
+  top: 0;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(45deg) scale(1); opacity: 1; }
+  70% { opacity: 1; }
+  100% { transform: translateY(-220px) translateX(30px) rotate(45deg) scale(1.2); opacity: 0; }
+}
+
+/* Flower */
+.flower {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  opacity: 0;
+  transform: scale(0.6) translateY(10px);
+  transition: transform 700ms cubic-bezier(.2,.8,.2,1), opacity 500ms;
+}
+.flower.bloom {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+.flower .petal { transform-origin: 0 30px; }
+.flower .petal:nth-child(1) { transform-origin: 0 40px; }
+.flower .petal { transform-box: fill-box; transition: transform 600ms ease; }
+.flower.bloom .petal { transform: scale(1.03); }
+.flower .center { transform-origin: center; transform: scale(0.6); transition: transform 600ms ease 100ms; }
+.flower.bloom .center { transform: scale(1); }
+

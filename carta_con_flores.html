@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carta con Flores - San Valentín</title>
+  <!-- Carta styles -->
+  <link rel="stylesheet" href="carta.san.valentin/style.css">
+  <style>
+    /* Layout for combined view */
+    body { background: #fffaf6; display:flex; align-items:center; justify-content:center; min-height:100vh; }
+    .wrapper { position: relative; }
+    /* iframe overlay for flowers */
+    #flowerFrame {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: none;
+      z-index: 2000;
+      background: #000;
+    }
+    /* Message overlay on top of flowers */
+    #messageOverlay {
+      position: fixed;
+      inset: 0;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 2100;
+      backdrop-filter: blur(4px);
+      background: rgba(0,0,0,0.3);
+      animation: fadeInOverlay 1s ease-in;
+    }
+    @keyframes fadeInOverlay {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    #messageBox {
+      background: linear-gradient(135deg, #fff5f7, #ffe4e9);
+      padding: 40px 50px;
+      border-radius: 20px;
+      box-shadow: 0 10px 50px rgba(255,105,180,0.4);
+      text-align: center;
+      max-width: 500px;
+      animation: slideIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    }
+    @keyframes slideIn {
+      from { transform: translateY(-50px) scale(0.8); opacity: 0; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+    #messageBox h2 {
+      font-family: 'Marck Script', cursive;
+      color: #d81b60;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    #messageBox p {
+      color: #555;
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+    #btnGalaxy {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 14px 32px;
+      font-size: 16px;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(102,126,234,0.4);
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+    #btnGalaxy:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(102,126,234,0.6);
+    }
+    /* Enlarged letter view */
+    #enlargedLetter {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 3000;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+    }
+    #enlargedContent {
+      background: white;
+      padding: 50px;
+      border-radius: 20px;
+      max-width: 700px;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 80px rgba(0,0,0,0.5);
+      position: relative;
+      animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    }
+    @keyframes popIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    #enlargedContent h3 {
+      font-family: 'Marck Script', cursive;
+      color: #d81b60;
+      margin-bottom: 20px;
+    }
+    #enlargedContent p {
+      color: #333;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+    #btnCloseEnlarged {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #e91e63;
+      color: white;
+      border: none;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    #btnCloseEnlarged:hover {
+      background: #c2185b;
+      transform: rotate(90deg);
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="wrapper">
+    <!-- Insert carta markup (keeps its interactivity) -->
+    <h1>¡Feliz San Valentín! ❤️</h1>
+    <div class="contenedor">
+        <div class="envoltura-sobre">
+            <div class="sobre">
+                <div class="carta">
+                    <div class="contenido">
+                        <strong>Querida Estrella</strong>
+                        <p>
+                            Hoy es <strong>San Valentín</strong>, el día oficial de los <em>corazones</em>, el <em>chocolate</em> y las declaraciones de amor dramáticas (como en las telenovelas). Así que prepárate, porque aquí va la mía: Desde que te conocí, mi corazón late más rápido que <code>WiFi</code> gratis en una plaza pública. Eres más brillante que un mensaje de "<strong>te amo</strong>" en <strong>LED gigante</strong> y más dulce que el doble de caramelo en un café con extra de crema. Si fueras un algoritmo, serías el más eficiente: optimizas mi felicidad con la menor cantidad de esfuerzo. Si fueras un bug, serías el único que no querría corregir. Y si fueras una aplicación, serías la que siempre tengo anclada en mi pantalla principal. Gracias por hacer de mi vida una versión mejorada, sin errores (bueno, quizá con algunos, pero todos adorables). <br> <strong>Feliz San Valentín</strong>, mi <em>estrella favorita</em>. <br> Con mucho <strong>código</strong> (y <strong>amor</strong>), <br> Tu programador enamorado. <br> <span style="font-size: 0.9em; color: grey;">PD: Si esta carta fuera un programa, su salida sería:</span> <br> <code>"Eres lo mejor que me ha pasado."</code>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="corazon"></div>
+            <div class="solapa-derecha"></div>
+            <div class="solapa-izquierda"></div>
+        </div>
+    </div>
+
+    <!-- Flower overlay (isolated in iframe to avoid CSS conflicts) -->
+    <iframe id="flowerFrame" src="" allow="autoplay"></iframe>
+    
+    <!-- Message overlay on top of flowers -->
+    <div id="messageOverlay">
+      <div id="messageBox">
+        <h2>💐 Flores Virtuales 💐</h2>
+        <p>Sé que no puedo darte las flores en persona, pero te dedico unas virtuales</p>
+        <button id="btnGalaxy">¿Deseas escuchar los latidos de mi corazón? 💓</button>
+      </div>
+    </div>
+
+    <!-- Enlarged letter view -->
+    <div id="enlargedLetter">
+      <div id="enlargedContent">
+        <button id="btnCloseEnlarged">✕</button>
+        <h3>📅 24 Junio 2025</h3>
+        <h4>💌 Mi Querido Darlin</h4>
+        <p>
+          Quiero que sepas lo feliz que soy por tenerte en mi vida. Desde que llegaste, todo cambió para mejor.
+          Me haces sentir amada, cuidada y acompañada de una forma que nunca antes había sentido.
+        </p>
+        <p>
+          A tu lado aprendí lo que es el amor verdadero, ese que se demuestra con acciones, con palabras sinceras
+          y con esos pequeños detalles que hacen la diferencia. Gracias por estar siempre conmigo, por darme tu
+          tiempo, tu cariño y tu comprensión.
+        </p>
+        <p>
+          No sé cómo explicarlo, pero contigo mi corazón está en paz. Eres mi alegría diaria
+          y la razón de tantas sonrisas.
+        </p>
+        <p>
+          Te amo profundamente. ♡
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Carta script (keeps behavior) -->
+  <script src="carta.san.valentin/script_v2.js"></script>
+  <script>
+    // Observe .carta for 'abierta' class and toggle flower iframe
+    const cartaEl = document.querySelector('.carta');
+    const flowerFrame = document.getElementById('flowerFrame');
+    const messageOverlay = document.getElementById('messageOverlay');
+    const btnGalaxy = document.getElementById('btnGalaxy');
+    const enlargedLetter = document.getElementById('enlargedLetter');
+    const btnCloseEnlarged = document.getElementById('btnCloseEnlarged');
+
+    function showFlowers() {
+      if (!flowerFrame.src) flowerFrame.src = 'flores-amarillas-tres/flower.html';
+      flowerFrame.style.display = 'block';
+      // Show message overlay after a brief delay
+      setTimeout(() => {
+        messageOverlay.style.display = 'flex';
+      }, 1500);
+    }
+    
+    function hideFlowers() {
+      flowerFrame.style.display = 'none';
+      messageOverlay.style.display = 'none';
+      // pause audio inside iframe by resetting src (will stop playback)
+      try { flowerFrame.contentWindow.postMessage({ type: 'pauseAudio' }, '*'); } catch(e){}
+    }
+
+    function showEnlargedLetter() {
+      enlargedLetter.style.display = 'flex';
+    }
+
+    function hideEnlargedLetter() {
+      enlargedLetter.style.display = 'none';
+    }
+
+    const mo = new MutationObserver((mutations) => {
+      for (const m of mutations) {
+        if (m.attributeName === 'class') {
+          if (cartaEl.classList.contains('abierta')) {
+            showFlowers();
+          } else {
+            hideFlowers();
+          }
+        }
+      }
+    });
+    mo.observe(cartaEl, { attributes: true });
+
+    // Button to navigate to galaxy
+    btnGalaxy.addEventListener('click', () => {
+      window.location.href = 'galaxy.html';
+    });
+
+    // Close enlarged letter
+    btnCloseEnlarged.addEventListener('click', hideEnlargedLetter);
+
+    // Escape key to close
+    document.addEventListener('keydown', (e) => { 
+      if (e.key === 'Escape') {
+        hideFlowers();
+        hideEnlargedLetter();
+      }
+    });
+
+    // Accept messages from iframe or galaxy page
+    window.addEventListener('message', (ev) => {
+      if (ev.data && ev.data.type === 'closeFlowers') hideFlowers();
+      if (ev.data && ev.data.type === 'showEnlargedLetter') {
+        hideFlowers();
+        showEnlargedLetter();
+      }
+    });
+
+    // Check if returning from galaxy (via URL parameter)
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('from') === 'galaxy') {
+      showEnlargedLetter();
+    }
+  </script>
+</body>
+</html>
